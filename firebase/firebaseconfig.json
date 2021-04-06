@@ -1,8 +1,8 @@
 {
-    "apiKey": "AIzaSyDa_Y0YK83QC6deKWzPOWekaOgubuZyheY",
-    "authDomain": "borisbot-86662.firebaseapp.com",
-    "projectId": "borisbot-86662",
-    "storageBucket": "borisbot-86662.appspot.com",
-    "messagingSenderId": "571464290848",
-    "appId": "1:571464290848:web:325f88c663c34b23772245"
+    "apiKey": "key",
+    "authDomain": "domain",
+    "projectId": "id",
+    "storageBucket": "bucket",
+    "messagingSenderId": "id",
+    "appId": "appid"
 }
