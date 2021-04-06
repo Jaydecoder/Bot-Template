@@ -4,7 +4,7 @@ const { Prefix, Token } = require('./botconfig.json');
 
 console.log("Bot Online!")
 const firebase= require("../firebase/firebaseconnect")
-const ToxicityFilter = require("./enableToxicityFilter")
+
 // Firebase save data
 
 // firebase.savedata(ref,data)
@@ -31,11 +31,6 @@ client.once('ready', () => {
 
 client.on('message', message => {
 	
-	const check = async function(){
-		await ToxicityFilter.CheckToxicity(message.content, message)
-			
-	}
-	 check()
 	if (!message.content.startsWith(Prefix) || message.author.bot) return;
 
 
