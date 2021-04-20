@@ -5,7 +5,7 @@ module.exports = {
 
     embed: (message,Title, Description, fields) => {
         const Embed = new Discord.MessageEmbed()
-        .setColor('#0099ff')
+        .setColor('#0099ff') // Colour/color here
         .setTitle(Title ?? "No Title")
         .setDescription(Description ?? "No Description")
         try{
@@ -18,7 +18,7 @@ module.exports = {
         }
         
         Embed.setTimestamp()
-        Embed.setFooter('Bot Crafters', 'https://i.imgur.com/o0jyleP.png');
+        Embed.setFooter('Bot- Name', IMAGE HERE);
         
         
         return Embed
