@@ -1,4 +1,12 @@
 # Bot-Template
 
 
-This bot uses a command handler + firebase as the database
+This is a bot template used to create flexible bots. This includes:
+===================================================================
+
+- Firebase
+- Embed template
+- Paypal template
+- Command Handler
+
+
