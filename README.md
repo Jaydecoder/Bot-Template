@@ -10,3 +10,4 @@ Bot-Template
 - Command Handler
 
 
+This is used as a base template for bots made using Bot Crafters service. This can be used by any person but can NOT be claimed as one's own.
