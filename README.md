@@ -1,8 +1,8 @@
-# Bot-Template
+Bot-Template
+============
 
+# This is a bot template used to create flexible bots. This includes:
 
-This is a bot template used to create flexible bots. This includes:
-===================================================================
 
 - Firebase
 - Embed template
