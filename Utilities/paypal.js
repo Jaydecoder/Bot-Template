@@ -4,8 +4,8 @@ const paypal = require('paypal-rest-sdk');
 const router = express.Router()
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
-  'client_id': 'ARcrPx6rwPkLXbyMH4mR4COCIMCkN7127yl57D0je8SsGOV5rjPPzYICWgZjJgoxSnozxzEVK00CFkQV',
-  'client_secret': 'EOfdkIQKh2YlYl2EMmNAV5EEARGrxDiKMEFkrJGJPo9UznVCWxuHEyDkkuC5lfioIauvnVtx_VSQwgSo'
+  'client_id': '-',
+  'client_secret': '-'
 });
 
 const embed = require("./embed").embed
@@ -16,7 +16,7 @@ const update = require('../firebase/firebaseconnect').UpdateUserInfo
 const config = require("../Bot/botconfig.json")
 const percentage = config.Percentage
 module.exports = {
-    pay: async (Name, Price, Description, message, order,client) => {
+    pay: async (Name, Price, Description, message) => {
         let msg;
         console.log("Giving link...")
         const create_payment_json = {
@@ -42,7 +42,7 @@ module.exports = {
                     "currency": "GBP",
                     "total":  Price
                 },
-                "description": Description ?? "Bot Crafters purchasment!"
+                "description": Description
             }]
         };
 
@@ -55,7 +55,7 @@ module.exports = {
                 
                 if(payment.links[i].rel === 'approval_url'){
                     
-                    return msg =await message.author.send(embed(message, 'Paypal', `You are ordering a ${order["type"]} package!`, {1: ["Cost: ", `£${Price}.00`],2: ["Link:", payment.links[i].href]}))
+                    // do something when link generated
                 }
             }
         }
@@ -83,23 +83,7 @@ module.exports = {
                 throw error;
             } else {
                 
-                order["payed"] = true
-                update('orders', order)
-                console.log(JSON.stringify(payment));
-                
-                res.redirect(`/payed/${message.author.username}`)
-                var developers = await getCollection('developers')
-				developerid =client.users.fetch(order["developer"])
-				.then((user) => {
-                    developers[user.id]["balance"] += (parseInt(Price) / 10) * (percentage / 10)
-                    set('developers', developers)
-                    user.send(embed(message,'Paypal',`<@${message.author.id}> has payed for his/her ${order["type"]} package! Please complete their order! key: ${order["DataId"]}`))
-                })
-               
-				
-                return msg.edit(embed(message, 'Paypal', `You have payed for a ${order["type"]} package! key: ${order["DataId"]}`))
-                
-                
+                // do something when payment completed
             }
         });
         });
@@ -133,14 +117,12 @@ payout: async (message,value,receiver,id,email_subject, note) => {
     paypal.payout.create(create_payout_json, sync_mode, function (error, payout) {
         if (error) {
             console.log(error.response);
-            message.author.send(embed(message, 'Error', `Unsuccessfully transfered £${value} to ${receiver} !`))
+            
+	    
             throw error;
         } else {
             console.log("Create Single Payout Response");
-            console.log(payout);
-            developers[id]['Balance'] = 0
-            set('developers', developers)
-            message.author.send(embed(message, 'Success', `Successfully transfered £${value} to ${receiver} !`))
+            
         }
     });
 },
